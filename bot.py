@@ -5,15 +5,19 @@ TOKEN = '6203711973:AAGQ0KgDqOiko9KnQZOF1i8hIluAuCuBWDk'
 
 updater = Updater(token=TOKEN)
 
+
 dp = updater.dispatcher
 
 
 def start(update: Update, context: CallbackContext):
-    update.message.reply_text(text="Salom, hush kelibsiz!")
+    chat = update.message.chat.id
+    context.bot.sendMessage(chat, 'salom xush kelipsiz!')
 
 def echo(update: Update, context: CallbackContext):
+    chatid = update.message.chat.id
     text = update.message.text
-    update.message.reply_text(text=text)
+
+    context.bot.sendMessage(chatid, text)
 
 
 dp.add_handler(handler=CommandHandler('start', start))
